@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.Data.SqlClient; 
-using Microsoft.Extensions.Configuration;
+using System.Data.SqlClient;
 
 namespace ParserData
 {
@@ -9,10 +8,10 @@ namespace ParserData
     {
         private readonly string _connectionString;
 
-        public DatabaseHandler(IConfiguration configuration)
+        public DatabaseHandler(string connectionString)
         {
             // Leer la cadena de conexión desde la configuración
-            _connectionString = configuration.GetConnectionString("EnergyConsumptionDB");
+            _connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
 
         public async Task InsertDataAsync((DateTime datetime, decimal value)[] datosSpain, (DateTime datetime, decimal value, int id_region)[] datosRegion)

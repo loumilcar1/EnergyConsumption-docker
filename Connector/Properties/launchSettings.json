@@ -1,10 +1,10 @@
 {
   "profiles": {
-    "EnergyConsumption": {
-      "commandName": "Project"
-    },
     "Container (Dockerfile)": {
       "commandName": "Docker"
+    },
+    "Connector": {
+      "commandName": "Project"
     }
   }
 }

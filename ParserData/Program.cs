@@ -17,12 +17,15 @@ namespace ParserData
                     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                     .Build();
 
+                // Obtener la cadena de conexión desde la configuración
+                string connectionString = config.GetConnectionString("EnergyConsumptionDB");
+
                 // Imprimir solo la hora en formato HH:mm:ss
                 Console.WriteLine("Start: " + DateTime.Now);
                 Console.WriteLine("\n");
                 Fetcher fetcher = new Fetcher(config);
                 Parser parser = new Parser();
-                DatabaseHandler databaseManager = new DatabaseHandler(config);
+                DatabaseHandler databaseManager = new DatabaseHandler(connectionString);
 
                 // 1- Fetch data
                 var (jsonSpain, jsonRegion) = await fetcher.FetchDataAsync();

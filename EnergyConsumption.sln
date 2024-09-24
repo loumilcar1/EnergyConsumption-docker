@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connector", "Connector\Conn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParserData", "ParserData\ParserData.csproj", "{97DEC5F1-FDE9-4501-BCF1-0EC6B41335E4}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{18BA306F-9E2C-4903-94CF-834EC06B181B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{97DEC5F1-FDE9-4501-BCF1-0EC6B41335E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97DEC5F1-FDE9-4501-BCF1-0EC6B41335E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97DEC5F1-FDE9-4501-BCF1-0EC6B41335E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18BA306F-9E2C-4903-94CF-834EC06B181B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18BA306F-9E2C-4903-94CF-834EC06B181B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18BA306F-9E2C-4903-94CF-834EC06B181B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18BA306F-9E2C-4903-94CF-834EC06B181B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

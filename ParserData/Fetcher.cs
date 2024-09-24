@@ -24,6 +24,7 @@ namespace ParserData
         private readonly bool useConfigurableUrl;
 
         private readonly IConfiguration _configuration;
+        private readonly string _connectionString;
         public Fetcher(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -34,6 +35,8 @@ namespace ParserData
             geoLimit = configuration["AppSettings:GeoLimit"];
             geoIds = configuration["AppSettings:GeoIds"];
             useConfigurableUrl = bool.Parse(configuration["AppSettings:UseConfigurableUrl"]);
+
+            _connectionString = configuration.GetConnectionString("EnergyConsumptionDB");
         }
 
         public async Task<(string, Dictionary<int, string>)> FetchDataAsync()
@@ -99,7 +102,7 @@ namespace ParserData
             else
             {
                 // Determine the start date based on the last date in the database
-                DatabaseHandler dbHandler = new DatabaseHandler(_configuration);
+                DatabaseHandler dbHandler = new DatabaseHandler(_connectionString);
                 DateTime lastDateSpainInDb = await dbHandler.GetLastDateSpainAsync();
                 DateTime today = DateTime.Today;
 
@@ -107,8 +110,8 @@ namespace ParserData
                 if (lastDateSpainInDb.Date < today)
                 {
                     DateTime startDateSpain = lastDateSpainInDb.AddDays(1);
-                    //urlSpain = $"{baseUrl}?start_date={startDateSpain:yyyy-MM-dd}T00:00&end_date={today:yyyy-MM-dd}T23:59&time_trunc=day";
-                    urlSpain = "https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2011-01-01T00:00&end_date=2011-12-31T23:59&time_trunc=day";
+                    urlSpain = $"{baseUrl}?start_date={startDateSpain:yyyy-MM-dd}T00:00&end_date={today:yyyy-MM-dd}T23:59&time_trunc=day";
+                    //urlSpain = "https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2011-01-01T00:00&end_date=2011-12-31T23:59&time_trunc=day";
                 }
 
                 // Prepare to collect responses for all regions
@@ -123,8 +126,8 @@ namespace ParserData
                     if (lastDateRegionInDb.Month != today.Month || lastDateRegionInDb.Year != today.Year)
                     {
                         DateTime startDateRegion = new DateTime(lastDateRegionInDb.Year, lastDateRegionInDb.Month, 1).AddMonths(1);
-                        //string regionUrl = $"{baseUrl}?start_date={startDateRegion:yyyy-MM-dd}T00:00&end_date={today:yyyy-MM-dd}T23:59&time_trunc=month&geo_limit={region.Value.geoLimit}&geo_ids={region.Value.geoId}";
-                        string regionUrl = $"https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2011-01-01T00:00&end_date=2011-12-31T23:59&time_trunc=month&geo_limit={region.Value.geoLimit}&geo_ids={region.Value.geoId}";
+                        string regionUrl = $"{baseUrl}?start_date={startDateRegion:yyyy-MM-dd}T00:00&end_date={today:yyyy-MM-dd}T23:59&time_trunc=month&geo_limit={region.Value.geoLimit}&geo_ids={region.Value.geoId}";
+                        //string regionUrl = $"https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2011-01-01T00:00&end_date=2011-12-31T23:59&time_trunc=month&geo_limit={region.Value.geoLimit}&geo_ids={region.Value.geoId}";
 
                         //Console.WriteLine($"Fetching data for region {region.Key} with URL: {regionUrl}");
 
