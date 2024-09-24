@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  parserdata:
+    build:
+      context: .
+      dockerfile: ParserData/Dockerfile
+    volumes:
+      - C:/Users/lourd/OneDrive/Escritorio/repos/EnergyConsumption/ParserData/appsettings.json:/app/appsettings.json  # Mapea el archivo appsettings.json
+    ports:
+      - "5000:5000"
+
+  connector:
+    build:
+      context: .
+      dockerfile: Connector/Dockerfile
+    volumes:
+      - C:/EnergyConsumption_Data:/app/EnergyConsumption_Data
+      - C:/Users/lourd/OneDrive/Escritorio/repos/EnergyConsumption/Connector/appsettings.json:/app/appsettings.json  # Mapea el archivo appsettings.json
+    ports:
+      - "5001:5001"
+
