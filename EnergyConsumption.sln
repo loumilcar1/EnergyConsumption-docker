@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParserData", "ParserData\Pa
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FB84F2CD-04D8-4C0A-A34F-E9CAFA61478E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseInitializer", "DatabaseInitializer\DatabaseInitializer.csproj", "{0339E1D6-E384-4331-B0A2-A640047A3E50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FB84F2CD-04D8-4C0A-A34F-E9CAFA61478E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB84F2CD-04D8-4C0A-A34F-E9CAFA61478E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB84F2CD-04D8-4C0A-A34F-E9CAFA61478E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0339E1D6-E384-4331-B0A2-A640047A3E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0339E1D6-E384-4331-B0A2-A640047A3E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0339E1D6-E384-4331-B0A2-A640047A3E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0339E1D6-E384-4331-B0A2-A640047A3E50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

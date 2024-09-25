@@ -184,9 +184,7 @@ namespace ParserData
             }
             catch (HttpRequestException e)
             {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
-                throw;
+                throw new Exception("\"Message :{0}", e);
             }
         }
 

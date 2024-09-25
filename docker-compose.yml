@@ -12,6 +12,17 @@ services:
     volumes: 
       - sqlserverdata:/var/opt/mssql
 
+  database_init:
+    image: ${DOCKER_REGISTRY-}database_init
+    container_name: DatabaseInit-container
+    depends_on:
+      - sqlserver
+    networks:
+      - ec-network
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: DatabaseInitializer/Dockerfile
 
   parserdata:
     image: ${DOCKER_REGISTRY-}parserdata
@@ -24,7 +35,7 @@ services:
     build:
       context: .
       dockerfile: ParserData/Dockerfile
-
+      
 networks:
   ec-network:
     driver: bridge

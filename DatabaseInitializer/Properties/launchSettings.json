@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DatabaseInitializer": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

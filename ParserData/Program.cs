@@ -45,12 +45,11 @@ namespace ParserData
                     Console.WriteLine("No data fetched. Data is already up to date.");
                     Console.WriteLine("\n");
                 }
-                // Espera a que el usuario presione Enter para cerrar la consola
-                Console.ReadLine();
             }
             catch (Exception e)
             {
                 Console.WriteLine("An error occurred: {0}", e.Message);
+                Environment.Exit(1);
             }
         }
     }

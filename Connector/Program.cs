@@ -61,9 +61,6 @@ namespace Connector
                 {
                     Console.WriteLine("\nNo new data to export for EnergyConsumption_Region.");
                 }
-
-                // Espera a que el usuario presione Enter para cerrar la consola
-                Console.ReadLine();
             }
             catch (Exception ex)
             {
