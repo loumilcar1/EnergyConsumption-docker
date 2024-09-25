@@ -1,0 +1,33 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server
+    container_name: Database-container
+    environment: 
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=TEMse-2024LMC
+    ports: 
+      - "1433:1433"
+    networks:
+      - ec-network
+    volumes: 
+      - sqlserverdata:/var/opt/mssql
+
+
+  parserdata:
+    image: ${DOCKER_REGISTRY-}parserdata
+    container_name: Parserdata-container
+    depends_on:
+      - sqlserver
+    networks:
+      - ec-network
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: ParserData/Dockerfile
+
+networks:
+  ec-network:
+    driver: bridge
+
+volumes:
+  sqlserverdata:
