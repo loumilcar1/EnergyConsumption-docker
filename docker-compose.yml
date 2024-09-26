@@ -44,8 +44,8 @@ services:
       context: .
       dockerfile: Connector/Dockerfile
     volumes:
-      - ./EnergyConsumptionData:/app/EnergyConsumptionData/SpainData
-      - ./EnergyConsumptionData:/app/EnergyConsumptionData/RegionData
+      - ./EnergyConsumptionData/SpainData:/app/EnergyConsumptionData/SpainData
+      - ./EnergyConsumptionData/RegionData:/app/EnergyConsumptionData/RegionData
 
   scheduler:
     image: alpine
