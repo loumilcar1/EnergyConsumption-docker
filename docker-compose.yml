@@ -13,7 +13,6 @@ services:
       - sqlserverdata:/var/opt/mssql
 
   database_init:
-    image: ${DOCKER_REGISTRY-}database_init
     container_name: DatabaseInit-container
     depends_on:
       - sqlserver
@@ -25,7 +24,6 @@ services:
       dockerfile: DatabaseInitializer/Dockerfile
 
   parserdata:
-    image: ${DOCKER_REGISTRY-}parserdata
     container_name: Parserdata-container
     depends_on:
       - sqlserver
@@ -35,7 +33,33 @@ services:
     build:
       context: .
       dockerfile: ParserData/Dockerfile
-      
+
+  connector:
+    container_name: Connector-container
+    depends_on:
+      - sqlserver
+    networks:
+      - ec-network
+    build:
+      context: .
+      dockerfile: Connector/Dockerfile
+    volumes:
+      - ./EnergyConsumptionData:/app/EnergyConsumptionData/SpainData
+      - ./EnergyConsumptionData:/app/EnergyConsumptionData/RegionData
+
+  scheduler:
+    image: alpine
+    container_name: Scheduler-container
+    networks:
+      - ec-network
+    entrypoint: ["/bin/sh", "-c", "crond -f"]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    build:
+      context: .
+      dockerfile: Scheduler/Dockerfile
+
 networks:
   ec-network:
     driver: bridge
