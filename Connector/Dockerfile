@@ -1,10 +1,5 @@
-# Consulte https://aka.ms/customizecontainer para aprender a personalizar su contenedor de depuración y cómo Visual Studio usa este Dockerfile para compilar sus imágenes para una depuración más rápida.
-
 # Esta fase se usa cuando se ejecuta desde VS en modo rápido (valor predeterminado para la configuración de depuración)
 FROM mcr.microsoft.com/dotnet/runtime:8.0 AS base
-
-# Instalar cron y tzdata
-RUN apt-get update && apt-get install -y cron tzdata
 
 # Instalar tzdata para gestionar la zona horaria
 RUN apt-get update && apt-get install -y tzdata

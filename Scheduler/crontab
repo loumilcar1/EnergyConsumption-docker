@@ -1,2 +1,3 @@
-*/2 * * * * sh /app/scheduler_init.sh Connector-container
-*/2 * * * * sh /app/scheduler_init.sh Parserdata-container
+
+0 12 * * * sh /app/scheduler_init.sh Parserdata-container
+30 12 * * * sh /app/scheduler_init.sh Connector-container

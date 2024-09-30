@@ -52,7 +52,6 @@ services:
     container_name: Scheduler-container
     networks:
       - ec-network
-    entrypoint: ["/bin/sh", "-c", "crond -f"]
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always

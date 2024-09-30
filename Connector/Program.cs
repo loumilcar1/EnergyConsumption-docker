@@ -36,14 +36,14 @@ namespace Connector
                 List<CSVData> records = await databaseHandler.FetchDataAsync();
 
                 // Fetch data from EnergyConsumption_Region
-                List<CSVDataRegion> regionRecords = await databaseHandler.FetchDataRegionAsync();
+                List<CSVDataRegion> regionRecords = await databaseHandler.FetchRegionDataAsync();
 
 
                 if (records.Any())
                 {
 
                     // Create or update the CSV file for EnergyDemand_Spain
-                    csvHandler.UpdateCsv(records);
+                    csvHandler.UpdateCsvSpain(records);
 
                 }
                 else
@@ -65,6 +65,7 @@ namespace Connector
             catch (Exception ex)
             {
                 Console.WriteLine("Error exporting data to CSV: " + ex.Message);
+                Environment.Exit(1);
             }
         }
     }

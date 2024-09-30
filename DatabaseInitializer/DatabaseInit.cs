@@ -22,11 +22,11 @@ namespace DatabaseInitializer
             Console.WriteLine("Checking if the database exists...");
 
             // Verificar si la base de datos existe
-            bool exists = await Task.Run(() => DatabaseExists("EnergyConsumption"));
+            bool databaseExists = await Task.Run(() => DatabaseExists("EnergyConsumption"));
 
-            if (!exists)
+            if (!databaseExists)
             {
-                Console.WriteLine("The database does not exist. Creating database and tables...");
+                Console.WriteLine("The database does not exist. Creating database...");
 
                 // Ejecutar script para crear la base de datos
                 string createDbScriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "scripts", "EnergyConsumptionDB.sql");
@@ -36,7 +36,7 @@ namespace DatabaseInitializer
                 string tablesScriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "scripts", "TablesEnergyConsumption.sql");
                 await Task.Run(() => ExecuteSqlScript(_connectionString, tablesScriptPath));
 
-                Console.WriteLine("Database and tables created successfully.");
+                Console.WriteLine("Database created successfully.");
             }
             else
             {
@@ -65,7 +65,7 @@ namespace DatabaseInitializer
         {
             if (File.Exists(scriptPath))
             {
-                // Leer el contenido del archivo de script
+                // Leer el script
                 string script = File.ReadAllText(scriptPath);
 
                 // Dividir el script en partes usando "GO" como separador

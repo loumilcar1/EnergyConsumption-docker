@@ -92,13 +92,13 @@ namespace ParserData
                     }
                     else
                     {
-                        throw new InvalidOperationException("No data in the EnergyDemand_Spain table.");
+                        throw new InvalidOperationException("Error: No data in the EnergyDemand_Spain table.");
                     }
                 }
             }
             catch (SqlException ex)
             {
-                throw new Exception("Failed to retrieve data from EnergyDemand_Spain. Exiting the program.", ex);  // Lanzar excepción
+                throw new Exception("Error: Failed to retrieve data from EnergyDemand_Spain.", ex);
             }
 
             return startDate;
@@ -125,13 +125,13 @@ namespace ParserData
                     }
                     else
                     {
-                        throw new InvalidOperationException($"No data in the EnergyDemand_Region table for region ID: {regionId}.");
+                        throw new InvalidOperationException($"Error: No data in the EnergyDemand_Region table for region ID: {regionId}.");
                     }
                 }
             }
             catch (SqlException ex)
             {
-                throw new Exception("Failed to retrieve data from EnergyDemand_Region. Exiting the program.", ex);  // Lanzar excepción
+                throw new Exception("Error: Failed to retrieve data from EnergyDemand_Region.", ex);
             }
 
             return startDate;

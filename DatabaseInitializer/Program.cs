@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 
 namespace DatabaseInitializer
@@ -17,14 +15,14 @@ namespace DatabaseInitializer
                     .AddJsonFile("appsettings.json")
                     .Build();
 
-                string? energyConsumptionConnectionString = configuration.GetConnectionString("EnergyConsumptionDB");
+                string? energyConsumptionDBConnectionString = configuration.GetConnectionString("EnergyConsumptionDB");
                 string? masterConnectionString = configuration.GetConnectionString("MasterConnection");
 
                 // Verificar si las cadenas de conexión son nulas
-                if (string.IsNullOrEmpty(energyConsumptionConnectionString) || string.IsNullOrEmpty(masterConnectionString))
+                if (string.IsNullOrEmpty(energyConsumptionDBConnectionString) || string.IsNullOrEmpty(masterConnectionString))
                 {
                     Console.WriteLine("Error: The database connection string was not found in the configuration file.");
-                    return; // Termina la ejecución del programa
+                    return;
                 }
 
                 // Inicializar la base de datos si no existe
@@ -34,12 +32,11 @@ namespace DatabaseInitializer
             catch (FileNotFoundException ex)
             {
                 Console.WriteLine($"Error: Configuration file not found. {ex.Message}");
-                Environment.Exit(1 );
+                Environment.Exit(1);
             }
             catch (Exception ex)
             {
-                // Captura cualquier otra excepción
-                Console.WriteLine($"An unexpected error occurred: {ex.Message}");
+                Console.WriteLine($"Error: An unexpected error occurred: {ex.Message}");
                 Environment.Exit(1);
             }
         }

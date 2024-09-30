@@ -47,7 +47,7 @@ namespace Connector
         }
 
         // Método para actualizar o crear CSVs según los datos recibidos
-        public void UpdateCsv(List<CSVData> records)
+        public void UpdateCsvSpain(List<CSVData> records)
         {
             // Agrupar los datos por mes
             var groupedByMonth = records
@@ -163,6 +163,7 @@ namespace Connector
                         {
                             writer.WriteLine($"{record.DateTime},{record.Id_Region},{record.Value}");
                         }
+                        Console.WriteLine($"Data successfully exported to CSV: {Path.GetFileName(filePath)}");
                     }
                 }
                 else

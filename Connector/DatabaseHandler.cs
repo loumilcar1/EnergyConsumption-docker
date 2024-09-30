@@ -56,7 +56,7 @@ namespace Connector
             return data;
         }
 
-        public async Task<List<CSVDataRegion>> FetchDataRegionAsync()
+        public async Task<List<CSVDataRegion>> FetchRegionDataAsync()
         {
             DateTime? lastExportedDateRegion = _csvHandler.GetLastExportedDateRegion();
             string query = lastExportedDateRegion.HasValue

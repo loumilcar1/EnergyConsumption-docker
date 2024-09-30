@@ -22,7 +22,7 @@ namespace ParserData
 
             if (data?.Included == null)
             {
-                throw new ArgumentNullException(nameof(data.Included), "The JSON does not contain any data");
+                throw new ArgumentNullException(nameof(data.Included), "Error: The JSON does not contain any data");
             }
 
             var values = data.Included[0].Attributes.Values;
@@ -38,7 +38,7 @@ namespace ParserData
             }
 
             // Print parsed data
-            Console.WriteLine("2- Data parsed:\n");
+            Console.WriteLine("2- Spain data parsed:\n");
             Console.WriteLine("Date \t\t\t\t Value");
             foreach (var (datetime, value) in parsedData)
             {
@@ -62,7 +62,7 @@ namespace ParserData
 
                 if (data?.Included == null)
                 {
-                    throw new ArgumentNullException(nameof(data.Included), "The JSON does not contain any data");
+                    throw new ArgumentNullException(nameof(data.Included), "Error: The JSON does not contain any data");
                 }
 
                 var values = data.Included[0].Attributes.Values;
@@ -76,7 +76,7 @@ namespace ParserData
             }
             // Print parsed data
             Console.WriteLine("\n");
-            Console.WriteLine("2- Data parsed:\n");;
+            Console.WriteLine("2- Region data parsed:\n");;
             Console.WriteLine("Date \t\t\t Value\t\t IdRegion");
             foreach (var (datetime, value, id_region) in allParsedData)
             {

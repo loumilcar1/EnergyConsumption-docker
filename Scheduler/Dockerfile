@@ -1,7 +1,11 @@
 FROM alpine:latest AS base
 
 # Instala paquetes necesarios
-RUN apk add --no-cache bash curl openrc docker-cli
+RUN apk add --no-cache bash curl openrc docker-cli tzdata
+
+#Establece zona horaria
+ENV TZ=Europe/Madrid
+RUN cp /usr/share/zoneinfo/Europe/Madrid /etc/localtime
 
 # Copia el script a la ruta del contenedor
 COPY ["Scheduler/scheduler_init.sh", "/app/scheduler_init.sh"]
@@ -13,4 +17,4 @@ RUN chmod +x /app/scheduler_init.sh
 COPY ["Scheduler/crontab", "/etc/crontabs/root"]
 
 # Comando para iniciar cron en primer plano
-CMD ["crond", "-f"]
+ENTRYPOINT ["crond", "-f"]
